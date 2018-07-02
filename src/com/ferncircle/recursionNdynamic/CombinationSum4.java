@@ -47,10 +47,10 @@ public class CombinationSum4 {
 	public static void main(String[] args){
 		
 		CombinationSum4 cs = new CombinationSum4();
-		int[] cadidates = new int[]{1,2,3};
+		int[] cadidates = new int[]{1,2,5};
 		
-		System.out.println("Top down: " + cs.combinationSum(cadidates, 4));
-		System.out.println("Bottom Up: " + cs.combinationSum4(cadidates, 4));
+		System.out.println("Top down: " + cs.combinationSum(cadidates, 5));
+		System.out.println("Bottom Up: " + cs.combinationSum4(cadidates, 5));
 	}
 
 }

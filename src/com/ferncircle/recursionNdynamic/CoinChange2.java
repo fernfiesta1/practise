@@ -40,13 +40,7 @@ public class CoinChange2 {
 
 	}
 
-	public int calc(int amount, int[] coins, int pos) {		
-
-		if(cache.containsKey(amount)){
-			if(cache.get(amount).containsKey(pos)){
-				return cache.get(amount).get(pos);
-			}
-		}
+	public int calc(int amount, int[] coins, int pos) {	
 
 		if(amount == 0){
 			return 1;
@@ -55,6 +49,12 @@ public class CoinChange2 {
 		if(amount < 0){
 			return 0;
 		}
+
+		if(cache.containsKey(amount)){
+			if(cache.get(amount).containsKey(pos)){
+				return cache.get(amount).get(pos);
+			}
+		}		
 
 		int result =0;
 		for(int i=pos; i<coins.length; i++){						
@@ -67,44 +67,33 @@ public class CoinChange2 {
 		Map<Integer, Integer> temp = cache.get(amount);
 		temp.put(pos, result);				
 		return result;
-	}
+	}	
 
-	//Memoized Solution
-	Map<Integer, Map<Integer, Integer>> dp = new HashMap(); 
-	int result=0;
-	public int change1(int amount, int[] coins) {
-		if(coins == null)
-			return 0;
-		return helper(amount, coins,0, 0);
+	public int changeBottomUp(int amount, int[] coins){
 
-	}
-	private int helper(int amount, int[] coins, int runSum, int idx){
-		if(runSum>amount)
-			return 0;
-		if(dp.containsKey(runSum) && dp.get(runSum).containsKey(idx))
-			return dp.get(runSum).get(idx);
-		if(amount == runSum){
-			return 1;
-		}    
+		int[] result = new int[amount+1];
 
-		int result = 0;
-		for( int i=idx; i<coins.length; i++){
-			result += helper(amount, coins, runSum+coins[i], i);
+		result[0] = 1;
+
+		for(int j=0; j<coins.length; j++){
+			for(int i=1; i<result.length; i++){
+				int temp = i-coins[j];
+				if(temp>=0){
+					result[i] += result[temp];
+				}
+			}
 		}
-		if(!dp.containsKey(runSum)){
-			dp.put(runSum, new HashMap());
-		}
-		Map<Integer, Integer> dp2 = dp.get(runSum);
-		dp2.put(idx, result);
-		return result;
+
+		return result[amount];
 
 	}
 
 	public static void main(String[] args){
 		CoinChange2 cc = new CoinChange2();
 		System.out.println(cc.change(5, new int[]{1,2,5}));
-		
-		
+		System.out.println("Bottom up : " + cc.changeBottomUp(5, new int[]{1,2,5}));
+
+
 	}
 
 
