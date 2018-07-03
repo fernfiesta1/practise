@@ -1,5 +1,13 @@
 package com.ferncircle.recursionNdynamic;
 
+/**
+ * Variation of Magic Index, the integers are not distinct.
+ * 
+ * Solution:
+ * 
+ * @author dbrit00s
+ *
+ */
 public class MagicIndexII {
 	
 	public static int findIndex(int[] input, int startIndex, int endIndex){

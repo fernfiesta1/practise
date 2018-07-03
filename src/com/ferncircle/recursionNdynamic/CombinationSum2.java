@@ -1,11 +1,40 @@
 package com.ferncircle.recursionNdynamic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 
+ * @author dbrit00s
+ *Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+
+Each number in candidates may only be used once in the combination.
+
+Note:
+
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+Example 1:
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8,
+A solution set is:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+Example 2:
+
+Input: candidates = [2,5,2,1,2], target = 5,
+A solution set is:
+[
+  [1,2,2],
+  [5]
+]
+ */
 public class CombinationSum2 {
 
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
@@ -54,7 +83,7 @@ public class CombinationSum2 {
 			target = target - input[i];
 			count[i]--;
 			temp.add(input[i]);
-			backtrack(input,count, target, new ArrayList<>(temp), result, i);
+			backtrack(input,count, target,temp, result, i);
 			
 			target = target + temp.get(temp.size()-1);
 			temp.remove(temp.size()-1);

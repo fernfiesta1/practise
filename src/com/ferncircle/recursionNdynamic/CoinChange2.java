@@ -30,6 +30,9 @@ Explanation: the amount of 3 cannot be made up just with coins of 2.
 Example 3:
 Input: amount = 10, coins = [10] 
 Output: 1
+
+NOTE: If asked number of combinations(only going forward), then for bottom up outer loop is coins and inner loop is amount.
+
  *
  */
 public class CoinChange2 {

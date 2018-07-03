@@ -4,6 +4,12 @@ package com.ferncircle.recursionNdynamic;
  * 
  * Magic Index in an array A[1 --n-1] is defined to be an indes such that A[i] = i.
  * Given a sorted array of distinct integers write a method to find a magic index if one exists.
+ * 
+ * Solution:
+ * Since the array is sorted, we counld solve this by divide and conquer.
+ * if the value at middle element is lesser than the middle index, search in the right half else search in the left half.
+ * 
+ * Complexity is O(logn)
  */
 
 public class MagicIndex {
