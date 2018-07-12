@@ -21,9 +21,12 @@ Output:
 [5,6]
 
 Algorithm:
-1st parse --> Mark elements as negative at the location of the input element. 
-2nd parse --> Go through the array and location whose elemts are positive. 
-return location +1
+For each elemet(when input array is writable):
+	Check if the element at the location is negative.
+	If yes add it to result.
+	else, 
+	mark the element at that location negative
+	
 
 
  */

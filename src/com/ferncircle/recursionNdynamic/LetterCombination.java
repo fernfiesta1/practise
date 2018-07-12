@@ -27,6 +27,8 @@ for each element of first array, go through all the elements of second array, fo
  * NOTE: Refer again
  *
  */
+
+//TODO: Try to explain this to Stany 
 public class LetterCombination {
 
 	public List<String> letterCombinations(String digits) {

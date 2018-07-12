@@ -34,6 +34,11 @@ public class Anagram {
 			}
 		}
 		
+		for(int i=0; i< charArr.length; i++){
+			if(charArr[i] > 0){
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -43,6 +48,7 @@ public class Anagram {
 		Assert.assertEquals(true, a.findAnagram("William Shakespeare", "I am a weakish speller"));
 		Assert.assertEquals(false, a.findAnagram("Stefina", "salina"));
 		Assert.assertEquals(false, a.findAnagram("klkl", "klklk"));
+		Assert.assertEquals(false, a.findAnagram("William Shakespeare", "I am a weakish s"));
 		
 		System.out.println("Test Successful");
 
