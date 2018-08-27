@@ -1,5 +1,10 @@
 package com.ferncircle.twopointers;
 
+/**This method works when there is only one duplicate element in the array.
+ * 
+ * @author dbrit00s
+ *
+ */
 public class FindDuplicate {
 
 	public static int findDuplicate(int[] nums) {

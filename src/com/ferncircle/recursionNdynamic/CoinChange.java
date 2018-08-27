@@ -27,11 +27,11 @@ public class CoinChange {
 
 	public int coinChange(int[] coins, int amount) {
 
-		int min = backtrackBottomUp(coins, amount, cache);
+		int min = topDown(coins, amount, cache);
 		return min == Integer.MAX_VALUE ? -1 : min;
 	}
 
-	private int backtrackBottomUp(int[] coins, int amt, Map<Integer, Integer> cache) {
+	private int topDown(int[] coins, int amt, Map<Integer, Integer> cache) {
 
 		if (cache.containsKey(amt)) {
 			return cache.get(amt);
@@ -47,7 +47,7 @@ public class CoinChange {
 				continue;
 			}
 
-			int currMin = backtrackBottomUp(coins, amt - coins[i], cache);
+			int currMin = topDown(coins, amt - coins[i], cache);
 			min = Math.min(min, currMin);
 		}
 
@@ -56,7 +56,7 @@ public class CoinChange {
 		return min;
 	}
 
-	private int topDown(int[] coins, int amt) {
+	private int bottomUp(int[] coins, int amt) {
 
 		// Initialize the integer array with the max value;
 		int[] temp = new int[amt + 1];
@@ -84,7 +84,7 @@ public class CoinChange {
 		CoinChange cc = new CoinChange();
 		// System.out.println(cc.coinChange(input, 5));
 
-		System.out.println("top down : " + cc.topDown(input, 3));
+		System.out.println("top down : " + cc.bottomUp(input, 3));
 	}
 
 }

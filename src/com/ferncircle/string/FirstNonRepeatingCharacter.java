@@ -1,37 +1,45 @@
-/**
- * 
- */
 package com.ferncircle.string;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
- * @author SFargose
+ * 
+ * Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+Note: You may assume the string contain only lowercase letters.
+ * @author dbrit00s
  *
  */
 public class FirstNonRepeatingCharacter {
 
-	//return '0' if not found e.g. 'aaa'
-	public Character firstChar(String s){
+	public int firstUniqChar(String s) {
+
+		int[] count = new int[26];
+		//Create a character array and keep a coun of all the characters in the input string
+		for(int i=0; i< s.length(); i++){
+			count[s.charAt(i) - 'a'] = count[s.charAt(i) - 'a'] + 1;
+		}
 		
-		return '0';
+		
+		//Go through each character of the input string and see if it is the first non repeating character.
+		for(int i=0; i<s.length(); i++){
+			if(count[s.charAt(i) - 'a'] == 1){
+				return i;
+			}
+		}
+		
+		return -1;
 	}
-	
+
 	public static void main(String[] args) {
 		
-		assertThat(new FirstNonRepeatingCharacter().firstChar("dpcggaefwefkviwkerpwalwdejfvghkeqoffvnajfvafaefawdpc"), is('i'));
-		
-		assertThat(new FirstNonRepeatingCharacter().firstChar("aaa"), is('0'));
-		assertThat(new FirstNonRepeatingCharacter().firstChar("dcda"), is('c'));
-		assertThat(new FirstNonRepeatingCharacter().firstChar("dpcggwdpc"), is('w'));
-
-		assertThat(new FirstNonRepeatingCharacter().firstChar("dpcggaefwefkviwkerpwalwdejfvghkeqoffvnajfvafaefawdpc"), is('i'));
-		System.out.println("all cases passed");
+		FirstNonRepeatingCharacter fs = new FirstNonRepeatingCharacter();
+		System.out.println(fs.firstUniqChar("leetcode"));
 
 	}
 
