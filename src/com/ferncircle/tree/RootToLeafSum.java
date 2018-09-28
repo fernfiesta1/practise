@@ -47,12 +47,16 @@ public class RootToLeafSum {
 		}
 
 		List<String> result = new ArrayList<String>();
-		helper(root, new StringBuffer(), result);
+		//helper(root, new StringBuffer(), result);
+		
+		List<Integer> temp = new ArrayList<>();
+		List<List<Integer>> res = new ArrayList<>();
+		helper1(root, temp, res);
 
 		int sum =0;
-		for(int i=0; i<result.size(); i++){
+		/*for(int i=0; i<result.size(); i++){
 			sum = sum + Integer.parseInt(result.get(i));
-		}
+		}*/
 		return sum;
 	}
 
@@ -70,6 +74,23 @@ public class RootToLeafSum {
 		helper(root.left, new StringBuffer(num), paths);
 		helper(root.right, new StringBuffer(num), paths);
 
+	}
+	
+	public void helper1(TreeNode root, List<Integer> temp, List<List<Integer>> result){
+		if(root == null){
+			return;
+		}
+		
+		temp.add(root.val);
+		if(root.left == null && root.right == null){
+			result.add(new ArrayList<>(temp));
+		}		
+		
+		helper1(root.left, temp, result);		
+		helper1(root.right, temp, result);
+		temp.remove(temp.size()-1);
+		//temp.remove(temp.size()-1);
+				
 	}
 
 

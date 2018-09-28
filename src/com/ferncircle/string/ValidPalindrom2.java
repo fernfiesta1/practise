@@ -18,6 +18,8 @@ public class ValidPalindrom2 {
 		while(start<=end){
 			
 			if(s.charAt(start) != s.charAt(end)){
+				//Delete the character at start and check if rest of the string is a palindrome
+				//else delete the character at end and check if rest of the string is a palindome.
 				if(!isPalindrome(s.substring(start+1, end+1))){
 					return isPalindrome(s.substring(start, end));
 				}

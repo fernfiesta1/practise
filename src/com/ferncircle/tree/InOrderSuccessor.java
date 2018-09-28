@@ -3,9 +3,23 @@ package com.ferncircle.tree;
 import junit.framework.Assert;
 
 public class InOrderSuccessor {
-	
-	public static TreeNode getSuccessor(TreeNode input){
+
+	public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+
+		TreeNode result = null;
+		while(root != null){
+			if(root.val <= p.val){
+				result = root.right;				
+			}else{
+				result = root;
+				root = root.left;
+			}
+		}
 		
+		return result;
+	}
+	public static TreeNode getSuccessor(TreeNode input){
+
 		TreeNode successor = null;
 		if(isLeafNode(input) || input.right == null){
 			TreeNode parent = input.parent;
@@ -20,7 +34,7 @@ public class InOrderSuccessor {
 	}
 
 	public static void main(String[] args) {
-		
+
 		BinarySearchTree bst = new BinarySearchTree();
 		bst.insert(5);
 		bst.insert(3);
@@ -32,33 +46,33 @@ public class InOrderSuccessor {
 		bst.insert(9);
 		bst.insert(6);
 		bst.insert(10);
-		
+
 		bst.displayInOrder(bst.root);
-		
+
 		Assert.assertEquals(6, getSuccessor(bst.root).val);
 		Assert.assertEquals(5, getSuccessor(bst.root.left.right).val);
 
 	}
-	
+
 	private static boolean isLeafNode(TreeNode input){
-		
+
 		if(input.left == null && input.right == null){
 			return true;
 		}
 		return false;
 	}
-	
+
 	private static TreeNode getSmallest(TreeNode input){		
-		
+
 		while(input.left != null){
 			input = input.left;
 		}
-		
+
 		return input;
 	}
-	
-	
-	
-	
+
+
+
+
 
 }
