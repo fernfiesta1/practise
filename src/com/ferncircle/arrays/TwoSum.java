@@ -35,6 +35,7 @@ public class TwoSum {
 			throw new RuntimeException("Length of Array should be more than 1");
 		}
 		Map<Integer, Integer> m1 = new HashMap<Integer, Integer>();
+		
 
 		int[] result = new int[2];
 		for(int i=0; i< nums.length; i++){

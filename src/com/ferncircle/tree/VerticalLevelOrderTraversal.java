@@ -26,13 +26,12 @@ public class VerticalLevelOrderTraversal {
 			TreeNode current = queue.poll();
 			Integer bucket = bucketQueue.poll();
 			
-			if(!bucketMap.containsKey(bucket)){
-				List<Integer> values = new ArrayList<>();
-				values.add(current.val);
-				bucketMap.put(bucket, values);
-			}else{
-				bucketMap.get(bucket).add(current.val);
-			}
+			bucketMap.computeIfAbsent(bucket, k -> new ArrayList()).add(current.val);
+			/*
+			 * if(!bucketMap.containsKey(bucket)){ List<Integer> values = new ArrayList<>();
+			 * values.add(current.val); bucketMap.put(bucket, values); }else{
+			 * bucketMap.get(bucket).add(current.val); }
+			 */
 			
 			if(current.left != null){
 				queue.add(current.left);

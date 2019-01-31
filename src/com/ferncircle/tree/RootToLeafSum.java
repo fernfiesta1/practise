@@ -47,16 +47,21 @@ public class RootToLeafSum {
 		}
 
 		List<String> result = new ArrayList<String>();
-		//helper(root, new StringBuffer(), result);
-		
+		helper3(root, new StringBuffer(), result);
+
 		List<Integer> temp = new ArrayList<>();
 		List<List<Integer>> res = new ArrayList<>();
-		helper1(root, temp, res);
+		//helper1(root, temp, res);
+		//helper3(root, temp, res)
 
+		
 		int sum =0;
-		/*for(int i=0; i<result.size(); i++){
+		for(int i=0; i<result.size(); i++){
+			System.out.println(result.get(i));
 			sum = sum + Integer.parseInt(result.get(i));
-		}*/
+		}
+		
+		System.out.println(sum);
 		return sum;
 	}
 
@@ -75,22 +80,38 @@ public class RootToLeafSum {
 		helper(root.right, new StringBuffer(num), paths);
 
 	}
-	
+
 	public void helper1(TreeNode root, List<Integer> temp, List<List<Integer>> result){
 		if(root == null){
 			return;
 		}
-		
+
 		temp.add(root.val);
 		if(root.left == null && root.right == null){
 			result.add(new ArrayList<>(temp));
 		}		
-		
+
 		helper1(root.left, temp, result);		
 		helper1(root.right, temp, result);
 		temp.remove(temp.size()-1);
 		//temp.remove(temp.size()-1);
-				
+
+	}
+
+	private void helper3(TreeNode root, StringBuffer temp, List<String> result){
+
+		if(root == null){
+			if(!temp.toString().isEmpty()){
+				result.add(temp.toString());
+			}
+			return; 
+		}   
+
+
+		temp.append(root.val);        
+		helper(root.left, new StringBuffer(temp), result);
+		helper(root.right, new StringBuffer(temp), result);
+
 	}
 
 
@@ -107,17 +128,17 @@ public int sum(TreeNode n, int s){
 	 */
 	public static void main(String[] args) {
 
-		TreeNode root  = new TreeNode(5);
-		root.left = new TreeNode(4);
-		root.right = new TreeNode(8);
-		root.left.left = new TreeNode(11);
+		TreeNode root  = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		/*root.left.left = new TreeNode(11);
 		root.left.left.right = new TreeNode(2);
 		root.left.left.left = new TreeNode(7);
 		root.right.left = new TreeNode(13);
 		root.right.right = new TreeNode(4);
 		root.right.right.left = new TreeNode(5);
 		root.right.right.right = new TreeNode(1);
-
+*/
 		RootToLeafSum r = new RootToLeafSum();
 		r.sumNumbers(root);
 	}

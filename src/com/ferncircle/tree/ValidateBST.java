@@ -40,29 +40,21 @@ public class ValidateBST {
 
 	List<Integer> nodes = new ArrayList<>();
 	public boolean isValidBST(TreeNode root) {
-		getNodesInOrder(root);
-		if(nodes.isEmpty() || nodes.size() == 1){
-			return true;
-		}
-		
-		for(int i=1; i< nodes.size(); i++){
-			if(nodes.get(i) <= nodes.get(i-1)){
-				return false;
-			}
-		}		
-		return true;		
-	}
-	
-	
-	private void getNodesInOrder(TreeNode root){
-		if(root == null){
-			return;
-		}		
-		getNodesInOrder(root.left);
-		nodes.add(root.val);
-		getNodesInOrder(root.right);
-		
-	}
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    private boolean helper(TreeNode root, Long minVal, Long maxVal){
+        if(root == null){
+            return true;
+        }
+        
+        if(root.val < minVal || root.val > maxVal){
+            return false;
+        }
+        
+        return helper(root.left, minVal, Long.valueOf(root.val)) && helper(root.right, Long.valueOf(root.val), maxVal);
+        
+    }
 	
 	
 	public static void main(String[] args) {

@@ -36,7 +36,31 @@ public class ClosestBinarySearchTreeValue {
 	    }     
 	    return ret;
 		
-	}	
+	}
+	
+	 public int result=0;
+	    public double minDiff = Double.MAX_VALUE;
+	    
+	    public int closestValue1(TreeNode root, double target) {
+	        
+	        if(root == null){
+	            return 0;
+	        }
+	        
+	        double currDiff = Math.abs(root.val - target);
+	        if(minDiff > currDiff){
+	            minDiff = currDiff;
+	            result = root.val;
+	        }
+	        
+	        if(root.val > target){
+	            closestValue(root.left, target);
+	        }else{
+	            closestValue(root.right, target);
+	        }
+	        
+	        return result;
+	    }
 
 	public static void main(String[] args) {
 		TreeNode tn = new TreeNode(4);
