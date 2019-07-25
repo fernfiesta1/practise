@@ -76,6 +76,6 @@ public class PartitionKEqualSets {
 
 	public static void main(String[] args) {
 		PartitionKEqualSets pes = new PartitionKEqualSets();
-		System.out.println(pes.canPartitionKSubsets(new int[] { 3, 2, 1 }, 2));
+		System.out.println(pes.canPartitionKSubsets(new int[] { 3, 2, 5 }, 2));
 	}
 }

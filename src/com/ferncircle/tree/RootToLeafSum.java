@@ -46,19 +46,21 @@ public class RootToLeafSum {
 			return 0;
 		}
 
-		List<String> result = new ArrayList<String>();
-		helper3(root, new StringBuffer(), result);
+		/*
+		 * List<String> result = new ArrayList<String>(); helper3(root, new
+		 * StringBuffer(), result);
+		 */
 
 		List<Integer> temp = new ArrayList<>();
 		List<List<Integer>> res = new ArrayList<>();
-		//helper1(root, temp, res);
+		helper1(root, temp, res);
 		//helper3(root, temp, res)
 
 		
 		int sum =0;
-		for(int i=0; i<result.size(); i++){
-			System.out.println(result.get(i));
-			sum = sum + Integer.parseInt(result.get(i));
+		for(int i=0; i<res.size(); i++){
+			System.out.println(res.get(i));
+			//sum = sum + Integer.parseInt(res.get(i));
 		}
 		
 		System.out.println(sum);

@@ -1,6 +1,7 @@
 package com.ferncircle.recursionNdynamic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -60,7 +61,10 @@ public class CombinationSum2 {
 			i++;
 		}
 		
-		backtrack(input,count, target, temp, result, 0);
+		//backtrack(input,count, target, temp, result, 0);
+		
+		//Arrays.sort(candidates);
+		backtrack2(candidates, target, temp, result, 0);
 		return result;
 		
 	}
@@ -92,12 +96,36 @@ public class CombinationSum2 {
 		}
 	}
 	
+	public void backtrack2(int[] input,  int target, List<Integer> temp, List<List<Integer>> result, int pos) {
+		
+		if(target == 0){
+			result.add(new ArrayList<>(temp));
+		}		
+		
+		for(int i=pos; i<input.length; i++){
+			
+			if(i > pos && input[i] == input[i-1]) continue;
+			if(target < input[i]){
+				return;
+			}
+			
+			target = target - input[i];
+			temp.add(input[i]);
+			backtrack2(input, target,temp, result, i+1);
+			
+			target = target + temp.get(temp.size()-1);
+			temp.remove(temp.size()-1);
+			
+		}
+		
+	}
+	
 	public static void main(String[] args){
 		
 		CombinationSum2 cs = new CombinationSum2();
-		int[] cadidates = new int[]{10,1,2,7,6,1,5};
+		int[] cadidates = new int[]{1,2,-3,5};
 		
-		System.out.println(cs.combinationSum(cadidates, 8));
+		System.out.println(cs.combinationSum(cadidates, 2));
 	}
 
 }

@@ -38,29 +38,29 @@ public class PathSumII {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		helper(root, pathsofar, result, sum);
 		return result;
-		
+
 	}
-	
+
 	public void helper(TreeNode root, List<Integer> pathSoFar, List<List<Integer>> result, int sum){
-		
+
 		if(root == null){
 			return;
 		}
 		pathSoFar.add(root.val);
 		if(root.left == null && root.right == null && sum - root.val == 0){
-			result.add(pathSoFar);
-		}else{
-			helper(root.left, new ArrayList<Integer>(pathSoFar), result, sum - root.val);
-			helper(root.right, new ArrayList<Integer>(pathSoFar), result, sum - root.val);
-			
+			result.add(new ArrayList<>(pathSoFar));
 		}
-		
+		helper(root.left, pathSoFar, result, sum - root.val);
+		helper(root.right, pathSoFar, result, sum - root.val);			
+
+		pathSoFar.remove(pathSoFar.size()-1);
+
 	}
-	
-	
+
+
 
 	public static void main(String[] args){
-		
+
 		TreeNode root  = new TreeNode(5);
 		root.left = new TreeNode(4);
 		root.right = new TreeNode(8);
@@ -71,13 +71,13 @@ public class PathSumII {
 		root.right.right = new TreeNode(4);
 		root.right.right.left = new TreeNode(5);
 		root.right.right.right = new TreeNode(1);
-		
+
 		PathSumII ps = new PathSumII();
 		List<List<Integer>> r = ps.pathSum(root, 22);
 		System.out.println(r.size());
 		for(List<Integer> l: r){
 			System.out.println(l);
 		}
-		
+
 	}
 }

@@ -55,6 +55,10 @@ public class PathSumIII {
 			return 0;
 		}		
 		
+		int count;
+		if(sum - root.val == 0) {
+			count++;
+		}
 		return (sum - root.val == 0 ? 1:0) + helper2(root.left, sum - root.val) + helper2(root.right, sum-root.val);
 		
 	}
